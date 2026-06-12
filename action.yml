@@ -1,0 +1,55 @@
+name: Sync Files Across Repos
+author: 'githubofkrishnadhas'
+# reference https://haya14busa.github.io/github-action-brandings/
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+
+description: |
+  Composite action to sync files across multiple repositories. This tool enables you to maintain consistency of shared files across multiple git repositories
+
+inputs:
+  organization:
+    description: 'GitHub organization name'
+    required: true
+  prefix:
+    description: 'GitHub repository name prefix to filter repositories (optional)'
+    required: false
+  path:
+    description: 'Path to the file to replicate'
+    required: true
+  file:
+    description: 'Name of the file to sync'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+
+    - uses: actions/checkout@v6
+      with:
+        repository: 'devwithkrishna/sync-files-across-repos'
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: |
+        pip install uv
+        uv sync
+      shell: bash
+
+    - name: Run file sync
+      run: |
+        PREFIX_ARG=""
+        if [ -n "${{ inputs.prefix }}" ]; then
+          PREFIX_ARG="--prefix ${{ inputs.prefix }}"
+        fi
+        uv run python3 sync_file.py \
+          --organization "${{ inputs.organization }}" \
+          $PREFIX_ARG \
+          --path "${{ inputs.path }}" \
+          --file "${{ inputs.file }}"
+      shell: bash
