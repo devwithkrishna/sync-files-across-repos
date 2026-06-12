@@ -1,0 +1,33 @@
+name: Documentation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Token generator
+      uses: githubofkrishnadhas/github-access-using-githubapp@v3
+      id: token-generation
+      with:
+        github_app_id: ${{ secrets.TOKEN_GENERATOR_APPID }}
+        github_app_private_key: ${{ secrets.TOKEN_GENERATOR_PRIVATE_KEY }}
+
+    - name: Checkout Repository
+      uses: actions/checkout@v6
+      with:
+        token: ${{ steps.token-generation.outputs.token }}
+
+    - uses: devwithkrishna/markdown2confluence@latest
+      with:
+        username: ${{ secrets.CONFLUENCE_USER }}
+        password: ${{ secrets.CONFLUENCE_TOKEN }}
+        docs-path: "."
+        confluence-url: ${{ secrets.CONFLUENCE_URL }}
+        title-from-h1: "true"
+        exclude-dir: "docs"
