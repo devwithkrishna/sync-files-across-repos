@@ -1,0 +1,29 @@
+version: 1
+formatters:
+    simple:
+        format: '%(asctime)s - %(msecs)03d - %(name)s - %(levelname)s - %(message)s'
+        datefmt: '%Y-%m-%dT%H:%M:%S'
+    ts_format:
+        format: '%(asctime)s - %(msecs)03d+00:00 - %(name)s - %(levelname)s [%(name)s] [%(process)d] %(message)s'
+        datefmt: '%Y-%m-%dT%H:%M:%S'
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: simple
+    level: INFO
+    stream: ext://sys.stdout
+  logfile:
+    class: logging.FileHandler
+    formatter: simple
+    level: INFO
+    filename: sync-files.log
+    mode: w
+
+loggers:
+  __main__:
+    level: DEBUG
+    handlers: [console, logfile]
+    propagate: no
+root:
+  level: DEBUG
+  handlers: [console, logfile]
