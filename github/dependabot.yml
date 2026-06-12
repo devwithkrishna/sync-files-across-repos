@@ -1,0 +1,99 @@
+version: 2
+
+updates:
+# ==================================================
+# PYTHON
+# ==================================================
+- package-ecosystem: "pip"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+    day: "monday"
+    time: "06:00"
+    timezone: "Asia/Kolkata"
+  commit-message:
+    prefix: "dependabot python package"
+
+  labels:
+  - dependencies
+  - python
+
+  assignees:
+  - githubofkrishnadhas
+
+  open-pull-requests-limit: 10
+
+  target-branch: "main"
+
+  versioning-strategy: increase-if-necessary
+
+# ==================================================
+# GO MODULES
+# ==================================================
+- package-ecosystem: "gomod"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+    day: "tuesday"
+    time: "06:00"
+    timezone: "Asia/Kolkata"
+
+  labels:
+  - dependencies
+  - golang
+
+  assignees:
+  - githubofkrishnadhas
+  open-pull-requests-limit: 5
+
+  versioning-strategy: auto
+
+  commit-message:
+    prefix: "deps(go)"
+    include: "scope"
+
+# ==================================================
+# TERRAFORM
+# ==================================================
+- package-ecosystem: "terraform"
+  directory: "/"
+  schedule:
+    interval: "daily"
+    time: "05:00"
+    timezone: "Asia/Kolkata"
+
+  labels:
+  - dependencies
+  - terraform
+
+  assignees:
+  - githubofkrishnadhas
+  open-pull-requests-limit: 10
+
+  commit-message:
+    prefix: "deps(terraform)"
+    include: "scope"
+
+# ==================================================
+# GITHUB ACTIONS
+# ==================================================
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+    day: "sunday"
+    time: "07:00"
+    timezone: "Asia/Kolkata"
+
+  labels:
+  - dependencies
+  - github-actions
+
+  open-pull-requests-limit: 5
+
+  commit-message:
+    prefix: "deps(actions)"
+    include: "scope"
+
+  assignees:
+  - githubofkrishnadhas
