@@ -1,4 +1,16 @@
+<!-- Space: devwithkrishna -->
+<!-- Parent: GitHub -->
+
+<!-- Macro: :toc:
+     Template: ac:toc
+     Printable: 'false'
+     MinLevel: 2 -->
+
 # sync-files-across-repos
+
+<!-- Include: docs/warning.tpl -->
+
+:toc:
 
 A Python utility for syncing files across multiple repositories. This tool enables you to maintain consistency of shared files across multiple git repositories.
 
@@ -37,7 +49,7 @@ This action is a `composite` action.
 ## Usage
 
 ```yaml
-- uses: devwithkrishna/sync-files-across-repos@v1.0.0
+- uses: devwithkrishna/sync-files-across-repos@v1.1.0
   with:
     organization:
     # GitHub organization name
@@ -78,16 +90,4 @@ sync-files-across-repos/
 └── README.md              # This file
 ```
 
-
-## License
-
-See the [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Support
-
-For issues or questions, please open an issue on the repository.
-
+<!-- Include: docs/footer.tpl -->
