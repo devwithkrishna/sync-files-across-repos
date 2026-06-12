@@ -49,7 +49,7 @@ This action is a `composite` action.
 ## Usage
 
 ```yaml
-- uses: devwithkrishna/sync-files-across-repos@v1.0.0
+- uses: devwithkrishna/sync-files-across-repos@v1.1.0
   with:
     organization:
     # GitHub organization name
